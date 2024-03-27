@@ -37,18 +37,12 @@ exports.registerUser = (req, res) => {
           });
           // Save the new user to the database
           newUser.save()
-            .then((user) => {
-              res.status(201).json(user);
-            })
-            .catch((err) => {
-              console.log("catch error", err)
-              res.status(500).json({ msg: err });
-            });
+           
         });
       });
     })
     .catch((err) => {
-      console.log("catch error 2")
+      console.error("Error finding user:", err);
       res.status(500).json({ msg: "Internal Server Error" });
     });
 };

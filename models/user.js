@@ -1,5 +1,8 @@
-var mongoose = require("mongoose");
+// var mongoose = require("mongoose");
+const mongoose = require('mongoose');
+
 var bcrypt = require("bcrypt");
+const {ObjectId}=require("mongodb");
 var userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -40,5 +43,6 @@ var userSchema = new mongoose.Schema({
         type: String,
         default: "user",
     },
+    
 });
 module.exports = mongoose.model("regs", userSchema);

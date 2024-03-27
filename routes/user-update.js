@@ -1,9 +1,13 @@
 var express = require('express'),
 routes = express.Router();
-var userController = require('../controllers/user-update');
-routes.post('/register', userController.updateUser);
-routes.post('/updateEmail',userController.updateEmail);
-routes.post('/updatePhone',userController.updatePhone);
-routes.post('/updatePass',userController.updatePassword);
-routes.post('/updateForgot',userController.forgotPassword);
+var userControllers = require('../controllers/user-update');
+var hotelController = require('../controllers/hotelroom');
+routes.post('/register', userControllers.updateUser);
+routes.post('/updateEmail',userControllers.updateEmail);
+routes.post('/updatePhone',userControllers.updatePhone);
+routes.post('/updatePass',userControllers.updatePassword);
+routes.post('/updateForgot',userControllers.forgotPassword);
+routes.post('/getUser',userControllers.getUser);
+routes.post('/addroom',hotelController.addRoom);
+
 module.exports = routes;
