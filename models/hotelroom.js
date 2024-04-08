@@ -7,6 +7,16 @@ var hotelroomSchema = new mongoose.Schema({
         required:true,
         ref:"hotels"
     },
+    hotelname: {
+        type: String,
+        required: true,
+        maxlength: 200 
+    },
+    location: {
+        type: String,
+        required: true,
+        maxlength: 200 
+    },
     cost: {
         type: Number,
         required: true,
