@@ -1,6 +1,18 @@
-const user = require('../models/user');
+//const user = require('../models/user');
 var User = require('../models/user');
 const bcrypt = require('bcrypt')
+exports.getUser=(req,res)=>{
+    User.findOne({_id:req.body.userId}).then((user)=>{
+        if (user) {
+        console.log(user)
+            res.status(200).json(user);
+        }
+        else {
+            console.log("err")
+            return res.status(400).json({ 'msg': "Internal error" });
+        }
+    });
+} 
 // Update username
 exports.updateUser = (req, res) => {
     console.log(req.body)
@@ -10,13 +22,12 @@ exports.updateUser = (req, res) => {
         return res.status(400).json({ 'msg': 'Should be less than 10 letters' });
     }
 // Update username in the database
-    User.findByIdAndUpdate(req.body.id, { username }, { new: true }).then((user) => {
+    User.findByIdAndUpdate(req.body._id, { username }, { new: true }).then((user) => {
 
         if (user) {
             res.status(200).json(user);
         }
         else {
-
             return res.status(400).json({ 'msg': err.message });
         }
     });
@@ -61,17 +72,20 @@ exports.updatePhone = (req, res) => {
         }
     });
 };
+
 exports.updatePassword = async (req, res) => {
-    const currentPassword = req.body.currentPassword;
-    const newPassword = req.body.newPassword;
-    const userId = req.body._id; // Assuming you have userId in the request body
+    const currentPassword =  req.body.currentPassword;
+    const newPassword =  req.body.newPassword;
+    const _id = req.body._id; // Assuming you have userId in the request body
     // Validation checks for empty fields
+    console.log(currentPassword)
+    console.log(_id)
     if (!currentPassword || !newPassword) {
         return res.status(400).json({ msg: 'Please provide both current password and new password' });
     }
     try {
         // Fetch the user from the database
-        const user = await User.findById(userId);
+        const user = await User.findById(_id);
         console.log(user);
         // Check if user is found
         if (!user) {
@@ -80,7 +94,9 @@ exports.updatePassword = async (req, res) => {
         // Check if the current password matches the stored hashed password
         const isMatch = await bcrypt.compare(currentPassword, user.password);
         if (!isMatch) {
+        console.log("not matched")
             return res.status(400).json({ msg: 'Current password is incorrect' });
+            
         }
         // Hash the new password
         const hashedPassword = await bcrypt.hash(newPassword, 10);
@@ -88,6 +104,7 @@ exports.updatePassword = async (req, res) => {
         user.password = hashedPassword;
         await user.save();
         res.json({ msg: 'Password updated successfully' });
+        console.log("matched")
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
