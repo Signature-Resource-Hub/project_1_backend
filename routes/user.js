@@ -2,6 +2,7 @@ var express = require('express'),
 routes = express.Router();
 var userController = require('../controllers/user');
 var addbusController=require('../controllers/addbus');
+
 routes.post('/register', userController.registerUser);
 routes.post('/login', userController.loginUser);
 routes.post('/travelreg',userController.registerUser);
@@ -21,6 +22,11 @@ routes.post('/updateacnonac',addbusController.updateBusAcNonAc);
 routes.post('/updatedescription',addbusController.updateBusDescription);
 routes.post('/updatebusseats',addbusController.updateBusSeats);
 routes.post('/updatebustype',addbusController.updateBusType);
+routes.post('/getbusbylocationdate',addbusController.getbusbylocationdate);
+
+
+
+
 
 module.exports = routes;
 
