@@ -46,7 +46,8 @@ exports.registerUser = (req, res) => {
       res.status(500).json({ msg: "Internal Server Error" });
     });
 };
-// Login function
+
+
 exports.loginUser = (req, res) => {
   // Extract email and password from the request body
   const { email, password } = req.body;
@@ -85,6 +86,7 @@ exports.loginUser = (req, res) => {
                   id: user._id,
                   username: user.username,
                   email: user.email,
+                  //phone: user.phone
                 },
               });
               //res.cookie("token",token);
