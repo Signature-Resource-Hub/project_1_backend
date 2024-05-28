@@ -1,5 +1,5 @@
 require("dotenv").config();
-//PORT
+
 const port = process.env.PORT || 8000;
 const mongoose = require("mongoose");
 const express = require("express");
@@ -13,7 +13,7 @@ var blogRoutes = require('./routes/blog')
 var orderRoutes = require('./routes/order')
 var review = require('./routes/review')
 
-//DB Connection
+
 mongoose
     .connect(process.env.DATABASE, {})
     .then(() => {
