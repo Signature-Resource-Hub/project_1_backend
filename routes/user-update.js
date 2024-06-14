@@ -26,7 +26,7 @@ routes.post('/updateacnonac',hotelController.updateHotelAcNonAc);
 routes.post('/updateperson',hotelController.updateHotelNumberOfPersons);
 routes.post('/updateavailability',hotelController.updateHotelAvailability);
 routes.post('/updatelocation',hotelController.updateHotelLocation);
-//routes.post('/bookhotel',hotelController.bookHotel);
+
 
 routes.post('/addblog',blogController.addBlog);
 
