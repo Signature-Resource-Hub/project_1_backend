@@ -1,13 +1,18 @@
+
+
+const mongoose = require('mongoose');
 const HotelRoom = require('../models/hotelroom');
+const HotelBook=require('../models/book_hotel');
+const ObjectId = mongoose.Types.ObjectId;
 
 
 // Controller function to add hotel room details
 exports.addRoom = (req, res) => {
     // Extract data from the request body
-    const { userid,location,cost, numberOfPersons, description, acNonAc , availability,hotelname} = req.body;
+    const { userid,location,cost, numberOfPersons, description, acNonAc , availability,hotelname,checkInTime,checkOutTime,rating} = req.body;
 
     // Check if all mandatory fields are provided
-    if (!userid || !cost || !numberOfPersons || !description || !acNonAc || !availability || !location || !hotelname) {
+    if (!userid || !cost || !numberOfPersons || !description || !acNonAc || !availability || !location || !hotelname || !checkInTime || !checkOutTime || !rating) {
         return res.status(400).json({ msg: "Please provide all mandatory fields" });
     }
 
@@ -20,7 +25,10 @@ exports.addRoom = (req, res) => {
         numberOfPersons,
         description,
         acNonAc,
-        availability
+        availability,
+        checkInTime,
+        checkOutTime,
+        rating
     });
 
     // Save the new hotel room to the database
@@ -33,6 +41,7 @@ exports.addRoom = (req, res) => {
             res.status(500).json({ msg: "Internal Server Error" });
         });
 };
+
 
 
 
@@ -58,6 +67,30 @@ exports.getRoomsByUserId = (req, res) => {
             res.status(500).json({ msg: "Internal Server Error" });
         });
 };
+
+exports.getRoomsByLocation = (req, res) => {
+    const { location } = req.body;
+
+    // Check if location is provided
+    if (!location) {
+        return res.status(400).json({ msg: "Please provide a location" });
+    }
+
+    // Find all hotel rooms with the given location
+    HotelRoom.find({ location })
+        .then((hotelRooms) => {
+            if (!hotelRooms.length) {
+                return res.status(404).json({ msg: "No hotel rooms found for the provided location" });
+            }
+            console.log(hotelRooms)
+            res.status(200).json(hotelRooms);
+        })
+        .catch((err) => {
+            console.error("Error finding hotel rooms:", err);
+            res.status(500).json({ msg: "Internal Server Error" });
+        });
+};
+
 
 exports.deleteHotelByUserId = (req, res) => {
     const { userid } = req.body;
@@ -267,5 +300,14 @@ exports.updateHotelLocation = (req, res) => {
             res.status(500).json({ msg: "Internal Server Error" });
         });
 };
+
+
+
+
+
+
+
+
+
 
 

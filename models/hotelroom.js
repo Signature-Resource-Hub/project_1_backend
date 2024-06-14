@@ -41,6 +41,19 @@ var hotelroomSchema = new mongoose.Schema({
         type: String,
         enum: ['YES', 'NO'], // Specify the allowed values for availability
         required: true
+    },
+    checkInTime: {
+        type: String,
+        required: true
+    },
+    checkOutTime: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
+        min: 0,
+        max: 5 // Rating should be between 0 and 5
     }
 
 
