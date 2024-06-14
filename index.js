@@ -21,13 +21,17 @@ var userRoutes = require('./routes/user');
 var userUpdateRoutes = require('./routes/user-update');
 var guideRoutes = require('./routes/guideroutes');
 var busroutes=require('./routes/busroutes');
-var userbusreview=require('./routes/userbusreview')
+var userbusreview=require('./routes/userbusreview');
+var userguidereview=require('./routes/guidereview');
+
 //after middleware
 app.use('/api', userRoutes);
 app.use('/api',guideRoutes);
 app.use('/api',busroutes);
 app.use('/api', userUpdateRoutes);
 app.use('/api', userbusreview);
+app.use('/api', userguidereview);
+
 
 //Starting a server
 app.listen(port, () => {
