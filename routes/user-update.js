@@ -2,10 +2,12 @@ var express = require('express'),
 routes = express.Router();
 var userControllers = require('../controllers/user-update');
 var hotelController = require('../controllers/hotelroom');
+
 const router = express.Router();
 var blogController = require('../controllers/blogs');
 
 // const guideController = require("../controllers/blogs");
+
 
 routes.post('/registers', userControllers.updateUser);
 routes.post('/updateEmail',userControllers.updateEmail);
