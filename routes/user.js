@@ -7,6 +7,9 @@ routes.post('/register', userController.registerUser);
 routes.post('/login', userController.loginUser);
 routes.post('/travelreg',userController.registerUser);
 routes.post('/hotelreg',userController.registerUser);
+routes.post('/guidereg',userController.registerUser);
+routes.post('/bloggerreg',userController.registerUser);
+
 routes.post('/addbus',addbusController.addbus);
 routes.post('/busid',addbusController.getBusByUserId);
 routes.post('/busdelete',addbusController.deleteBusByUserId);

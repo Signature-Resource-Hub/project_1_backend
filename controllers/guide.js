@@ -67,8 +67,3 @@ exports.getguideByLocation = (req, res) => {
 
 
 
-
-// router.get("/viewall",async(req,res)=>{
-//     let data=await tutorModel.find()
-//     res.json(data)
-// })
