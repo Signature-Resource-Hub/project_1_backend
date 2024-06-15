@@ -46,4 +46,8 @@ var travelSchema = new mongoose.Schema({
         default: "travells",
     },
 });
+
 module.exports = mongoose.model("travels", travelSchema);
+
+
+

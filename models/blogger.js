@@ -23,7 +23,7 @@ const bloggerSchema=new mongoose.Schema(
             required: true,
             maxlength: 200 
         },
-        guidepincode: {
+        pincode: {
             type: String,
             required: true,
             validate: {
