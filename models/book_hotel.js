@@ -43,6 +43,20 @@ var bookHotelSchema = new mongoose.Schema({
        
     },
 
+    hotelname: {
+        type: String,
+        required: true,
+        maxlength: 200 
+    },
+
+    acNonAc: {
+        type: String,
+        enum: ['AC', 'NON-AC'], // Specify the allowed values for AC/NON-AC
+        required: true
+    },
+
+    
+
 
 
     
