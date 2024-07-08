@@ -30,7 +30,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 //PORT
-const port = process.env.PORT || 8000;
 var userRoutes = require('./routes/user');
 var userUpdateRoutes = require('./routes/user-update');
 var guideRoutes = require('./routes/guideroutes');

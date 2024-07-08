@@ -10,10 +10,10 @@ const ObjectId = mongoose.Types.ObjectId;
 
 exports.bookHotel = async(req, res) => {
     // Extract data from the request body
-    const { userid, hotel_id, book_for, price, username, useremail, userphone} = req.body;
+    const { userid, hotel_id, book_for, price, username, useremail, userphone,hotelname,acNonAc} = req.body;
 
     // Check if all mandatory fields are provided
-    if (!userid || !hotel_id || !book_for || !price || !username || !useremail || !userphone  ) {
+    if (!userid || !hotel_id || !book_for || !price || !username || !useremail || !userphone || !hotelname || !acNonAc ) {
         return res.status(400).json({ msg: "Please provide all mandatory fields" });
     }
 
@@ -31,6 +31,8 @@ exports.bookHotel = async(req, res) => {
         username,
         useremail,
         userphone,
+        hotelname,
+        acNonAc
         
         
 
@@ -47,8 +49,7 @@ exports.bookHotel = async(req, res) => {
                 userId: savedBooking.userid,
                 hotelId: savedBooking.hotel_id,
                 createdAt: savedBooking.booking_date,
-                
-                
+                 
 
             };
 
